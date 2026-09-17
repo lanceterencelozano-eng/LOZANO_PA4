@@ -23,25 +23,30 @@ df
 VisComm = df.loc[(df['Hometown'] == 'Visayas') & (df['Track'] == 'Communication'), ['Name', 'Gender', 'Math', 'Electronics', 'Average']]
 VisComm
 ```
+This code calculates the row-wise mean score across four subjects to create an `Average` column, then extracts rows for students from Visayas in the Communication track with selected columns.
 
 ```python
 VisComm.shape[0]
 ```
+Returns the total number of rows (students) present in the filtered `VisComm` DataFrame.
 
 ## B. Visayas Female Dataframe
 ```python
 VisFemale = df.loc[(df['Hometown'] == 'Visayas') & (df['Gender'] == 'Female'), ['Name', 'Track', 'GEAS', 'Electronics', 'Average']]
 VisFemale
 ```
+This filters the main dataset for female students whose hometown is Visayas and retains specific columns for analysis.
 
 ```python
 VisFemale.loc[VisFemale['Average'] >= 60]
 ```
+This code displays only the rows from `VisFemale` where the student's average grade is 60 or higher.
 
 ## C. Category-Average Visualization
 ```python
 import matplotlib.pyplot as plt
 ```
+Imports Matplotlib's pyplot module to enable data plotting and visualization.
 
 ```python
 mean_track = df.groupby('Track')['Average'].mean().reset_index()
@@ -52,6 +57,7 @@ display(mean_track)
 display(mean_gender)
 display(mean_hometown)
 ```
+Calculates the mean overall grade grouped separately by `Track`, `Gender`, and `Hometown`, then displays each summary table.
 
 ```python
 plt.figure(figsize=(15, 5))
@@ -78,6 +84,7 @@ plt.ylim(0, 100)
 plt.tight_layout()
 plt.show()
 ```
+Configures a side-by-side figure layout containing three bar charts to visually display the mean overall grades across track, gender, and hometown. Each subplot applies specific axis labels and standardizes the vertical scale from 0 to 100 for accurate comparison. Finally, `plt.tight_layout()` adjusts subplot spacing to prevent overlapping before `plt.show()` renders the final graphs.
 
 ## Interpretation Statements:
 Track: Within the observed dataset, students in the Communication track recorded the highest sample mean average score of 67.98.
